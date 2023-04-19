@@ -1,4 +1,4 @@
-class DataHandling:
+#class DataHandling:
     conn = squlite3.connect("expenses.db")
     cur = conn.cursor()
 
