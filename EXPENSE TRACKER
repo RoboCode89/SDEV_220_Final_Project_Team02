@@ -1,0 +1,48 @@
+PRICES = []
+DATE = []
+EXPENSE_TYPES = []
+
+# The functions to add expenses to list.
+
+def add_expense(good_or_service, price, date, expense_type):
+    GOOD_OR_SERVICES.append(good_or_service)
+    PRICES.append(price)
+    DATE.append(date)
+
+
+# Main program 
+
+choice = 1 # The users choice or input 
+while(choice != 0):
+    print("Add food Expense")
+    print("Add a Household expense")
+    print("Add Transportation Expense")
+    print('ZZZ. Exit')
+    choice  = int(input("What's your choice? "))
+
+
+    # New line 
+    print()
+    # Check for users option 
+    if choice  == 0:
+        print('Exiting the program')
+        break
+    elif choice == 1: 
+        print("Add food") 
+        expense_type = 'Food'
+    elif choice == 2:
+        print("Adding HouseHold")
+        expense_type = "HouseHold"
+    elif choice == 3:
+        print("Adding Transportion")
+        expense_type = "Add Transportation"
+
+
+        # User has to enter the expense and price 
+
+        good_or_service = input('Enter the good or service for the expense type '+expense_type+':\n')
+        price = float(input("Enter the price of the good or service:\n"))
+        today = date.today()
+        add_expense(good_or_service, price, today, expense_type)
+        # Print a new line 
+        print()
