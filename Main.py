@@ -14,7 +14,7 @@ class DataEntryForm(QWidget):            #adding views to the main window object
         self.items = 0
 
         #dummy data set for examples, dictionary
-        self._data = {"Phone bill": 50.5, "Gas": 30.0, "rent": 1850.0, "Car Payment": 420.0, 
+        self._data = {"Double click a description or pirce to edit": 0.0, "Gas": 30.0, "rent": 1850.0, "Car Payment": 420.0, 
                       "Entertainment": 105.0, "Public Transport": 60.0, "Coffee":90.5}
 
         #left side of the app screen setup, 2 columns, header names Description and Price
