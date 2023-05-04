@@ -2,7 +2,7 @@
 code set to .setStyleSheet is CSS code for display"""
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
-
+from userLOGIN import *
 
 # creates main window to pass container object into
 class Ui_MainWindow(object):
@@ -49,38 +49,38 @@ class Ui_MainWindow(object):
         self.LoginLabel.setStyleSheet("color:rgba(9,9,9,1);")
         self.LoginLabel.setObjectName("LoginLabel")
 
-        # user input for "User_Name_input"... Need to get info for login
-        self.User_Name_input = QtWidgets.QLineEdit(self.containerThing)
-        self.User_Name_input.setGeometry(QtCore.QRect(120, 100, 200, 40))
+        # -------------------------------------------------------------------------------user input for "GuiUserName"... Need to get info for login
+        self.GuiUserName = QtWidgets.QLineEdit(self.containerThing)
+        self.GuiUserName.setGeometry(QtCore.QRect(120, 100, 200, 40))
         font = QtGui.QFont()
         font.setFamily("Arial Rounded MT Bold")
         font.setPointSize(20)
         font.setBold(False)
-        self.User_Name_input.setFont(font)
-        self.User_Name_input.setStyleSheet("background-color:rgba(0,0,0,0);\n"
+        self.GuiUserName.setFont(font)
+        self.GuiUserName.setStyleSheet("background-color:rgba(0,0,0,0);\n"
                                         "border:none;\n"
                                         "border-bottom:2px solid rgba(105,118,132,255);\n"
                                         "color:rgba(9,9,9,1);\n"
                                         "padding-bottom:7px;")
-        self.User_Name_input.setObjectName("User_Name_input")
+        self.GuiUserName.setObjectName("GuiUserName")
 
-        #user input for "User_password_input ... Need to get info for login
-        self.User_password_input = QtWidgets.QLineEdit(self.containerThing)
-        self.User_password_input.setGeometry(QtCore.QRect(120, 160, 200, 40))
+        #---------------------------------------------------------------------------------user input for "GuiUserPassword ... Need to get info for login
+        self.GuiUserPassword = QtWidgets.QLineEdit(self.containerThing)
+        self.GuiUserPassword.setGeometry(QtCore.QRect(120, 160, 200, 40))
         font = QtGui.QFont()
         font.setFamily("Arial Rounded MT Bold")
         font.setPointSize(20)
         font.setBold(False)
-        self.User_password_input.setFont(font)
-        self.User_password_input.setStyleSheet("background-color:rgba(0,0,0,0);\n"
+        self.GuiUserPassword.setFont(font)
+        self.GuiUserPassword.setStyleSheet("background-color:rgba(0,0,0,0);\n"
                                                 "border:none;\n"
                                                 "border-bottom:2px solid rgba(105,118,132,255);\n"
                                                 "color:rgba(9,9,9,1);\n"
                                                 "padding-bottom:7px;")
-        self.User_password_input.setEchoMode(QtWidgets.QLineEdit.Password)
-        self.User_password_input.setObjectName("User_password_input")
+        self.GuiUserPassword.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.GuiUserPassword.setObjectName("GuiUserPassword")
 
-        #login button.. need linked button to function for user authentication
+        #---------------------------------------------------------------------------------login button.. need linked button to function for user authentication
         self.Login_Button = QtWidgets.QPushButton(self.containerThing)
         self.Login_Button.setEnabled(True)
         self.Login_Button.setGeometry(QtCore.QRect(120, 230, 200, 40))
@@ -106,6 +106,10 @@ class Ui_MainWindow(object):
                                         "background-color:rgba(9,9,9,1)\n"
                                         "}")
         self.Login_Button.setObjectName("Login_Button")
+        
+
+
+
 
         #label text for "New User"
         self.NewAccountLabel = QtWidgets.QLabel(self.containerThing)
@@ -119,38 +123,38 @@ class Ui_MainWindow(object):
         self.NewAccountLabel.setStyleSheet("color:rgba(9,9,9,1);")
         self.NewAccountLabel.setObjectName("NewAccountLabel")
 
-        # Feild for "NewUserNameInput"... Need to get info for login Reg new user
-        self.NewUserNameInput = QtWidgets.QLineEdit(self.containerThing)
-        self.NewUserNameInput.setGeometry(QtCore.QRect(120, 360, 200, 40))
+        #-------------------------------------------------------------------------------------- Feild for "GuiNewUserName"... Need to get info for login Reg new user
+        self.GuiNewUserName = QtWidgets.QLineEdit(self.containerThing)
+        self.GuiNewUserName.setGeometry(QtCore.QRect(120, 360, 200, 40))
         font = QtGui.QFont()
         font.setFamily("Arial Rounded MT Bold")
         font.setPointSize(20)
         font.setBold(False)
-        self.NewUserNameInput.setFont(font)
-        self.NewUserNameInput.setStyleSheet("background-color:rgba(0,0,0,0);\n"
+        self.GuiNewUserName.setFont(font)
+        self.GuiNewUserName.setStyleSheet("background-color:rgba(0,0,0,0);\n"
                                                 "border:none;\n"
                                                 "border-bottom:2px solid rgba(105,118,132,255);\n"
                                                 "color:rgba(9,9,9,1);\n"
                                                 "padding-bottom:7px;")
-        self.NewUserNameInput.setObjectName("NewUserNameInput")
+        self.GuiNewUserName.setObjectName("GuiNewUserName")
 
-        # Feild for "NewUserPwordInput" ... Need to get info for login Reg new user pword
-        self.NewUserPwordInput = QtWidgets.QLineEdit(self.containerThing)
-        self.NewUserPwordInput.setGeometry(QtCore.QRect(120, 420, 200, 40))
+        #------------------------------------------------------------------------------ Feild for "GuiNewUserPassword" ... Need to get info for login Reg new user pword
+        self.GuiNewUserPassword = QtWidgets.QLineEdit(self.containerThing)
+        self.GuiNewUserPassword.setGeometry(QtCore.QRect(120, 420, 200, 40))
         font = QtGui.QFont()
         font.setFamily("Arial Rounded MT Bold")
         font.setPointSize(20)
         font.setBold(False)
-        self.NewUserPwordInput.setFont(font)
-        self.NewUserPwordInput.setStyleSheet("background-color:rgba(0,0,0,0);\n"
+        self.GuiNewUserPassword.setFont(font)
+        self.GuiNewUserPassword.setStyleSheet("background-color:rgba(0,0,0,0);\n"
                                                 "border:none;\n"
                                                 "border-bottom:2px solid rgba(105,118,132,255);\n"
                                                 "color:rgba(9,9,9,1);\n"
                                                 "padding-bottom:7px;")
-        self.NewUserPwordInput.setEchoMode(QtWidgets.QLineEdit.Password)
-        self.NewUserPwordInput.setObjectName("NewUserPwordInput")
+        self.GuiNewUserPassword.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.GuiNewUserPassword.setObjectName("GuiNewUserPassword")
 
-        #button for creating new user... need function from login 
+        #---------------------------------------------------------------------------------------------button for creating new user... need function from login 
         self.CreateNewAccButton = QtWidgets.QPushButton(self.containerThing)
         self.CreateNewAccButton.setEnabled(True)
         self.CreateNewAccButton.setGeometry(QtCore.QRect(90, 480, 251, 40))
@@ -181,11 +185,11 @@ class Ui_MainWindow(object):
 
         self.label_2.raise_()
         self.LoginLabel.raise_()
-        self.User_Name_input.raise_()
-        self.User_password_input.raise_()
+        self.GuiUserName.raise_()
+        self.GuiUserPassword.raise_()
         self.NewAccountLabel.raise_()
-        self.NewUserNameInput.raise_()
-        self.NewUserPwordInput.raise_()
+        self.GuiNewUserName.raise_()
+        self.GuiNewUserPassword.raise_()
         self.Login_Button.raise_()
         self.CreateNewAccButton.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
@@ -198,13 +202,34 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "PFT Login"))
         self.LoginLabel.setText(_translate("MainWindow", "Login"))
-        self.User_Name_input.setPlaceholderText(_translate("MainWindow", "User Name"))
-        self.User_password_input.setPlaceholderText(_translate("MainWindow", "Password"))
+        self.GuiUserName.setPlaceholderText(_translate("MainWindow", "User Name"))
+        self.GuiUserPassword.setPlaceholderText(_translate("MainWindow", "Password"))
         self.Login_Button.setText(_translate("MainWindow", "L o g i n"))
         self.NewAccountLabel.setText(_translate("MainWindow", "New Account"))
-        self.NewUserNameInput.setPlaceholderText(_translate("MainWindow", "User Name"))
-        self.NewUserPwordInput.setPlaceholderText(_translate("MainWindow", "Password"))
+        self.GuiNewUserName.setPlaceholderText(_translate("MainWindow", "User Name"))
+        self.GuiNewUserPassword.setPlaceholderText(_translate("MainWindow", "Password"))
         self.CreateNewAccButton.setText(_translate("MainWindow", "Create New Account"))
+
+       
+#----------------------------------------------------------------------------------------------Buttons connected to functions
+        self.Login_Button.clicked.connect(self.getUserInfo)
+        self.CreateNewAccButton.clicked.connect(self.getNewUserInfo)
+ 
+    def getUserInfo(self):
+        userName = self.GuiUserName.text()
+        userPassword = self.GuiUserPassword.text()
+        print(userName, userPassword)
+        userLogin(userName, userPassword)
+
+
+    def getNewUserInfo(self):
+        NewUserName = self.GuiNewUserName.text()
+        NewUserPassword = self.GuiNewUserPassword.text()
+        print(NewUserName,NewUserPassword)
+        Register(NewUserName,NewUserPassword)
+
+
+
 
 
 
