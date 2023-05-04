@@ -28,16 +28,18 @@ def Register(NewUserName, NewUserPassword):
 #function for user login
 #function for user login
 def userLogin(userName, userPassword):
-    #userName = input("Username: ")
-    #userPassword = input("Password: ")
+    userName = userName
+    userPassword = userPassword
     #reading file for username and pw and if it matches they login if not says failed.
     with open("register.txt", "r") as file:
         lines = file.readlines()
         for line in lines:
             items = line.strip().split('/')
             #checking if username matches what is stored in file and if the hashed pw matches
-            if items[0] == userName and items[1] == hashlib.sha256(userPassword.encode()).hexdigest():
-                print("Login Success") #sample output
-                ###RUN MAIN--------------------------------------------------------------------------------------RUN MAIN
-            else:
+            try:
+                if items[0] == userName and items[1] == hashlib.sha256(userPassword.encode()).hexdigest():
+                    print("Login Success") #sample output
+                    break
+                    ###RUN MAIN--------------------------------------------------------------------------------------RUN MAIN
+            except:
                 print("Login Failed") #sample output
