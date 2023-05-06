@@ -214,20 +214,18 @@ class Ui_MainWindow(object):
 #----------------------------------------------------------------------------------------------Buttons connected to functions
         self.Login_Button.clicked.connect(self.getUserInfo)
         self.CreateNewAccButton.clicked.connect(self.getNewUserInfo)
-
-
- #Function to collect data from GUI fields to run userLOGIN userLogin function
+ 
     def getUserInfo(self):
         userName = self.GuiUserName.text()
         userPassword = self.GuiUserPassword.text()
-        print(userName, userPassword)
+        print(userName,userPassword)        
         userLogin(userName, userPassword)
 
-#Function to collect data from GUI fields to run userLOGIN Register function
+
     def getNewUserInfo(self):
         NewUserName = self.GuiNewUserName.text()
         NewUserPassword = self.GuiNewUserPassword.text()
-        print(NewUserName,NewUserPassword)
+        print(NewUserName,NewUserPassword)        
         Register(NewUserName,NewUserPassword)
 
 
