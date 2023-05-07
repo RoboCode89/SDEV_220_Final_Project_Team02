@@ -222,7 +222,7 @@ class Ui_MainWindow(object):
         userName = self.GuiUserName.text()
         userPassword = self.GuiUserPassword.text()
         print(userName,userPassword)                       
-        userLogin(userName, userPassword, self, self.mainWindow)
+        userLogin(userName, userPassword)
         
 
 

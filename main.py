@@ -108,7 +108,7 @@ class DataEntryForm(QWidget):            #adding views to the main window object
 
 #empty strings to clear the input after adding
         self.LineEditDescription.setText("")
-        self.LineEditPrice.setText("")
+        self.lineEditPrice.setText("")
 
 #checks of there are values in input, enabling or disabeling the add button updating the boolean value
     def check_disable(self):

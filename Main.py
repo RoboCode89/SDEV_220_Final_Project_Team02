@@ -108,7 +108,7 @@ class DataEntryForm(QWidget):            #adding views to the main window object
 
 #empty strings to clear the input after adding
         self.LineEditDescription.setText("")
-        self.LineEditPrice.setText("")
+        self.lineEditPrice.setText("")
 
 #checks of there are values in input, enabling or disabeling the add button updating the boolean value
     def check_disable(self):
@@ -145,7 +145,8 @@ class DataEntryForm(QWidget):            #adding views to the main window object
 
 class MainWindow(QMainWindow):                                                                         #application main interface class
     def __init__(self, w):
-        super().__init__()                                                                             #inheirt 
+        super().__init__()
+        print('Initializing mainwindow')                                                                             #inheirt 
         self.setWindowTitle('Expense Data Entry Form')                                                 #window title
         #self.setWindowIcon(QIcon(r'C:\Users\peglo\OneDrive\SDEV220\Project stuff\financial_icon.png')) #set file path for icon png file, needs to adjust once file uplaod
         self.resize(1200,600)                                                                          #size of window
