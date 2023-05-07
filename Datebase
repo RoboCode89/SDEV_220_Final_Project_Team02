@@ -1,0 +1,29 @@
+#Strategem Values (Values Almost Any Card Will Have)
+self.name = dataDict.get("name",None)
+self.text = dataDict.get('text',None)
+self.cost = dataDict.get('cost',0)
+self.imagePath = dataDict.get('path','error.png')
+
+#Bot Card Values
+self.subName = dataDict.get("subName",None)
+self.traits = dataDict.get('traits',None)
+
+self.upgradeName = dataDict.get("upgradeName",None)
+
+self.attack = dataDict.get('attack',None)
+self.health = dataDict.get('health',None)
+self.defense = dataDict.get('defense',None)
+@@ -33,6 +33,7 @@ def __init__(self,dataDict):
+self.subType = dataDict.get("subType",None)
+self.icon = dataDict.get("icon",None)
+
+
+#string method for print function
+def __str__(self):
+    return self.dataDict
+@@ -47,8 +48,7 @@ def __init__(self,sideList,dataDict):
+self.dataDict = dataDict
+#store the data unique to each side on the card
+self.sideList = sideList
+#get number of sides on the card
+self.size = len(sideList)
