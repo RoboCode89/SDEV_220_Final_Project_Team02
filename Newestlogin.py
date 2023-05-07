@@ -2,10 +2,13 @@
 code set to .setStyleSheet is CSS code for display"""
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
+from main import DataEntryForm, MainWindow
 from userLOGIN import *
 
 # creates main window to pass container object into
 class Ui_MainWindow(object):
+    def __init__(self, mainWindow):
+        self.mainWindow = mainWindow
 
     #adds each object from .Ui file setup from Qtdesigner program
     def setupUi(self, MainWindow):
@@ -218,8 +221,9 @@ class Ui_MainWindow(object):
     def getUserInfo(self):
         userName = self.GuiUserName.text()
         userPassword = self.GuiUserPassword.text()
-        print(userName,userPassword)        
-        userLogin(userName, userPassword)
+        print(userName,userPassword)                       
+        userLogin(userName, userPassword, self, self.mainWindow)
+        
 
 
     def getNewUserInfo(self):
@@ -232,10 +236,11 @@ class Ui_MainWindow(object):
 
 
 
-
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    ex = Ui_MainWindow()
+    w = DataEntryForm()
+    mainWindow = MainWindow(w)
+    ex = Ui_MainWindow(mainWindow)
     w = QtWidgets.QMainWindow()
     ex.setupUi(w)
     w.show()

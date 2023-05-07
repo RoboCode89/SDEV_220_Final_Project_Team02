@@ -25,7 +25,8 @@ def Register(NewUserName, NewUserPassword):
     QtWidgets.QMessageBox.information(None, 'Congratulations!', 'Registration Successful')
 
 #function for user login
-def userLogin(userName, userPassword):
+def userLogin(userName, userPassword, loginWindow, mainWindow):
+    print('in login function')#testing purpose
     userName = userName
     userPassword = userPassword
     login_successful = False
@@ -39,9 +40,16 @@ def userLogin(userName, userPassword):
                     login_successful = True
                     break
     if login_successful:
+        print('login successful')
         QtWidgets.QMessageBox.information(None, 'Welcome', 'Login Successful!')
+        print('Before showing main') #testing purpose
+        mainWindow.show()
+        print('main shown') #testin purpose      
+        #loginWindow.close() #not working!!!!!!!
+        print('login window closed')#testing purpose
 
     else:
+        print('not successful') #testing purpose
         QtWidgets.QMessageBox.warning(None, 'Error', 'Invalid Login')
                     ###RUN MAIN--------------------------------------------------------------------------------------RUN MAIN
             
