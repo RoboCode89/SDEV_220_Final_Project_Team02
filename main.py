@@ -4,7 +4,8 @@ import csv
 from PyQt5.QtWidgets import (QApplication, QWidget, QMainWindow, QPushButton, QAction, QHeaderView, QLineEdit, QLabel, QTableWidget, QTableWidgetItem, QVBoxLayout, QHBoxLayout)
 from PyQt5.QtGui import QPainter, QStandardItemModel, QIcon
 from PyQt5.Qt import Qt                                            
-from PyQt5.QtChart import QChart, QChartView, QPieSeries         
+from PyQt5.QtChart import QChart, QChartView, QPieSeries
+from cryptography.fernet import Fernet         
 
 class DataEntryForm(QWidget):            #adding views to the main window object
     def __init__(self):
@@ -170,6 +171,38 @@ class MainWindow(QMainWindow):                                                  
 
         #pass the widget object to mainwindow
         self.setCentralWidget(w) 
+
+
+
+#---------------------------------------------New process to encrypt CSV file----- NOT FINISHED----
+    # def encryptCSV():
+    #     #key generation
+    #     key = Fernet.generate_key()
+
+    #     # string the key in a file
+    #     with open('filekey.key','wb') as filekey:
+    #         filekey.write(key)
+
+    #     #opening the key
+    #     with open('filekey.key', 'rb') as filekey:
+    #         key = filekey.read()
+        
+    #     with open ('Expense Report.csv', 'rb') as file:
+    #         original = file.read()
+
+    #     encrypted = Fernet.encrypt(original)
+
+    #     with open ('Expense Report.csv', 'wb') as encrypted_file:
+    #         encrypted_file.write(encrypted)
+
+    
+
+#---------------------------------------------New process to encrypt CSV file----- NOT FINISHED----
+
+
+
+
+
 
 
     #function to export CSV file, using csv module, file saved as Expense Report.csv, file opened and closed.
