@@ -1,6 +1,0 @@
-def good():
-    print("Hello World")
-goodMorning()
-
-
-
