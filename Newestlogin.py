@@ -2,13 +2,14 @@
 code set to .setStyleSheet is CSS code for display"""
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
-from main import DataEntryForm, MainWindow
+from Main import DataEntryForm, MainWindow
 from userLOGIN import *
 
-# creates main window to pass container object into
+# creates Main window to pass container object into
 class Ui_MainWindow(object):
     def __init__(self, mainWindow):
         self.mainWindow = mainWindow
+        
 
     #adds each object from .Ui file setup from Qtdesigner program
     def setupUi(self, MainWindow):
