@@ -5,7 +5,8 @@ from PyQt5.QtWidgets import (QApplication, QWidget, QMainWindow, QPushButton, QA
 from PyQt5.QtGui import QPainter, QStandardItemModel, QIcon
 from PyQt5.Qt import Qt                                            
 from PyQt5.QtChart import QChart, QChartView, QPieSeries
-from cryptography.fernet import Fernet         
+#from cryptography.fernet import Fernet         
+
 
 class DataEntryForm(QWidget):            #adding views to the main window object
     def __init__(self):
