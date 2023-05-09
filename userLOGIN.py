@@ -1,10 +1,5 @@
 import hashlib #importing hashing
 from PyQt5 import QtWidgets
-from Main import *
-from Main import MainWindow as mw
-from Main import DataEntryForm as form
-
-
 #user class to define username and pw
 class User():
     def init(self, userName, userPassword):
@@ -29,8 +24,8 @@ def Register(NewUserName, NewUserPassword):
 
     QtWidgets.QMessageBox.information(None, 'Congratulations!', 'Registration Successful')
 
-#function for user login------------------------------------------------------------------------------------------------------
-def userLogin(userName, userPassword):
+#function for user login
+def userLogin(userName, userPassword, loginWindow, mainWindow):
     print('in login function')#testing purpose
     userName = userName
     userPassword = userPassword
@@ -39,8 +34,8 @@ def userLogin(userName, userPassword):
     with open("register.txt", "r") as file:
         lines = file.readlines()
         for line in lines:
-            items = line.strip().split('/')
-             #checking if username matches what is stored in file and if the hashed pw matches
+            items = line.strip().split('/')           
+             #checking if username matches what is stored in file and if the hashed pw matches           
             if items[0] == userName and items[1] == hashlib.sha256(userPassword.encode()).hexdigest():
                     login_successful = True
                     break
@@ -48,19 +43,15 @@ def userLogin(userName, userPassword):
         print('login successful')
         QtWidgets.QMessageBox.information(None, 'Welcome', 'Login Successful!')
         print('Before showing main') #testing purpose
+        mainWindow.show()
+        print('main shown') #testin purpose                
+        loginWindow.mainWindow.close() #not working!!!!!!!
+        print('login window closed')#testing purpose       
         
-        w = mw()
-        w.mw.show()
-        
-       
-        print('main shown') #testin purpose
-        #loginWindow.mainWindow.close() #not working!!!!!!!
-        print('login window closed')#testing purpose
-
 
     else:
         print('not successful') #testing purpose
         QtWidgets.QMessageBox.warning(None, 'Error', 'Invalid Login')
-                   
+                    ###RUN MAIN--------------------------------------------------------------------------------------RUN MAIN
             
-               #main.MainWindow
+               
