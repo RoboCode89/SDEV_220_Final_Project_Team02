@@ -1,5 +1,7 @@
 import hashlib #importing hashing
 from PyQt5 import QtWidgets
+from Newestlogin import Ui_MainWindow as uimw
+
 #user class to define username and pw
 class User():
     def init(self, userName, userPassword):
@@ -25,7 +27,8 @@ def Register(NewUserName, NewUserPassword):
     QtWidgets.QMessageBox.information(None, 'Congratulations!', 'Registration Successful')
 
 #function for user login
-def userLogin(userName, userPassword, loginWindow, mainWindow):
+def userLogin(userName, userPassword): #, dataform, uimw
+
     print('in login function')#testing purpose
     userName = userName
     userPassword = userPassword
@@ -41,11 +44,14 @@ def userLogin(userName, userPassword, loginWindow, mainWindow):
                     break
     if login_successful:
         print('login successful')
-        QtWidgets.QMessageBox.information(None, 'Welcome', 'Login Successful!')
+        #QtWidgets.QMessageBox.information(None, 'Welcome', 'Login Successful!')
         print('Before showing main') #testing purpose
-        mainWindow.show()
+        
+        return login_successful
+              
+
         print('main shown') #testin purpose                
-        loginWindow.mainWindow.close() #not working!!!!!!!
+        #uimw.mainWindow.close() #not working!!!!!!!
         print('login window closed')#testing purpose       
         
 

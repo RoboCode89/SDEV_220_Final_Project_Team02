@@ -223,7 +223,10 @@ class Ui_MainWindow(object):
         userName = self.GuiUserName.text()
         userPassword = self.GuiUserPassword.text()
         print(userName,userPassword)                       
-        userLogin(userName, userPassword)
+        
+        if userLogin(userName, userPassword):
+            mainWindow.show()
+            
         
 
 
@@ -241,6 +244,7 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     w = DataEntryForm()
     mainWindow = MainWindow(w)
+    
     ex = Ui_MainWindow(mainWindow)
     w = QtWidgets.QMainWindow()
     ex.setupUi(w)
