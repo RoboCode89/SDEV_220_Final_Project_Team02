@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import (QApplication, QWidget, QMainWindow, QPushButton, QA
 from PyQt5.QtGui import QPainter, QStandardItemModel, QIcon
 from PyQt5.Qt import Qt                                            
 from PyQt5.QtChart import QChart, QChartView, QPieSeries
-#from cryptography.fernet import Fernet         
+     
 
 
 class DataEntryForm(QWidget):            #adding views to the main window object
@@ -62,6 +62,7 @@ class DataEntryForm(QWidget):            #adding views to the main window object
         self.layout.addLayout(self.layoutRight, 50)
 
 #creates layout object for buttons to sit in, connects buttons to functions
+        app = QApplication(sys.argv)
         self.setLayout(self.layout)
         self.buttonQuit.clicked.connect(lambda:app.quit())
         self.buttonClear.clicked.connect(self.reset_table)
@@ -149,6 +150,7 @@ class MainWindow(QMainWindow):                                                  
     def __init__(self, w):
         super().__init__()
         self.DataEntryForm = w   #--------
+        app = QApplication(sys.argv)  #------test
         print('Initializing mainwindow')                                                                             #inheirt 
         self.setWindowTitle('Expense Data Entry Form')                                                 #window title
         #self.setWindowIcon(QIcon(r'C:\Users\peglo\OneDrive\SDEV220\Project stuff\financial_icon.png')) #set file path for icon png file, needs to adjust once file uplaod
@@ -176,36 +178,6 @@ class MainWindow(QMainWindow):                                                  
 
 
 
-#---------------------------------------------New process to encrypt CSV file----- NOT FINISHED----
-    # def encryptCSV():
-    #     #key generation
-    #     key = Fernet.generate_key()
-
-    #     # string the key in a file
-    #     with open('filekey.key','wb') as filekey:
-    #         filekey.write(key)
-
-    #     #opening the key
-    #     with open('filekey.key', 'rb') as filekey:
-    #         key = filekey.read()
-        
-    #     with open ('Expense Report.csv', 'rb') as file:
-    #         original = file.read()
-
-    #     encrypted = Fernet.encrypt(original)
-
-    #     with open ('Expense Report.csv', 'wb') as encrypted_file:
-    #         encrypted_file.write(encrypted)
-
-    
-
-#---------------------------------------------New process to encrypt CSV file----- NOT FINISHED----
-
-
-
-
-
-
 #self.DataEntryForm ------ w
     #function to export CSV file, using csv module, file saved as Expense Report.csv, file opened and closed.
     def export_to_csv(self):
@@ -213,7 +185,7 @@ class MainWindow(QMainWindow):                                                  
             with open('Expense Report.csv','w', newline='' ) as file:
                 writer = csv.writer(file)
                 writer.writerow((self.DataEntryForm.table.horizontalHeaderItem(0).text(), self.DataEntryForm.table.horizontalHeaderItem(1).text()))
-                for rowNumber in range(w.table.rowCount()):
+                for rowNumber in range(self.DataEntryForm.table.rowCount()):
                     writer.writerow([self.DataEntryForm.table.item(rowNumber, 0).text(), self.DataEntryForm.table.item(rowNumber, 1).text()])
 
                 print('CSV file exported')

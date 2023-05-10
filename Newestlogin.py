@@ -226,7 +226,7 @@ class Ui_MainWindow(object):
         
         if userLogin(userName, userPassword):
             mainWindow.show()
-            
+            w.hide()
         
 
 
