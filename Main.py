@@ -1,4 +1,4 @@
-
+""""Test Main with a capital MMMMMMMMMM"""
 import sys
 import csv
 from PyQt5.QtWidgets import (QApplication, QWidget, QMainWindow, QPushButton, QAction, QHeaderView, QLineEdit, QLabel, QTableWidget, QTableWidgetItem, QVBoxLayout, QHBoxLayout)
@@ -148,6 +148,7 @@ class DataEntryForm(QWidget):            #adding views to the main window object
 class MainWindow(QMainWindow):                                                                         #application main interface class
     def __init__(self, w):
         super().__init__()
+        self.DataEntryForm = w   #--------
         print('Initializing mainwindow')                                                                             #inheirt 
         self.setWindowTitle('Expense Data Entry Form')                                                 #window title
         #self.setWindowIcon(QIcon(r'C:\Users\peglo\OneDrive\SDEV220\Project stuff\financial_icon.png')) #set file path for icon png file, needs to adjust once file uplaod
@@ -205,15 +206,15 @@ class MainWindow(QMainWindow):                                                  
 
 
 
-
+#self.DataEntryForm ------ w
     #function to export CSV file, using csv module, file saved as Expense Report.csv, file opened and closed.
     def export_to_csv(self):
         try:
             with open('Expense Report.csv','w', newline='' ) as file:
                 writer = csv.writer(file)
-                writer.writerow((w.table.horizontalHeaderItem(0).text(), w.table.horizontalHeaderItem(1).text()))
+                writer.writerow((self.DataEntryForm.table.horizontalHeaderItem(0).text(), self.DataEntryForm.table.horizontalHeaderItem(1).text()))
                 for rowNumber in range(w.table.rowCount()):
-                    writer.writerow([w.table.item(rowNumber, 0).text(), w.table.item(rowNumber, 1).text()])
+                    writer.writerow([self.DataEntryForm.table.item(rowNumber, 0).text(), self.DataEntryForm.table.item(rowNumber, 1).text()])
 
                 print('CSV file exported')
                 file.close()
