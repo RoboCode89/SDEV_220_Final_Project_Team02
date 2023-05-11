@@ -16,7 +16,7 @@ class DataEntryForm(QWidget):            #adding views to the main window object
         self.items = 0
 
         #dummy data set for examples, dictionary
-        self._data = {"Double click a description or price to edit": 0.0, "Gas": 30.0, "rent": 1850.0, "Car Payment": 420.0, 
+        self._data = {"Gas": 30.0, "rent": 1850.0, "Car Payment": 420.0, 
                       "Entertainment": 105.0, "Public Transport": 60.0, "Coffee":90.5}
 
         #left side of the app screen setup, 2 columns, header names Description and Price
@@ -24,9 +24,20 @@ class DataEntryForm(QWidget):            #adding views to the main window object
         self.table.setColumnCount(2)
         self.table.setHorizontalHeaderLabels(("Description", "Price"))
         self.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch) #auto exapnd column width
+        
+        # Add label above table
+        self.layoutTable = QVBoxLayout()
+        self.label = QLabel("Double click a description or price to edit")
+        self.layoutTable.addWidget(self.label)
+        self.layoutTable.addWidget(self.table)
+
+        #create layout object for with 50% of screen used
+        self.layout = QHBoxLayout()
+        self.layout.addLayout(self.layoutTable, 50)
 
         #create layout object
         self.layoutRight = QVBoxLayout()
+       
 
         # set chart widget using a render method in Qpainter for better resolution
         self.chartView = QChartView()                         
@@ -56,9 +67,16 @@ class DataEntryForm(QWidget):            #adding views to the main window object
         self.layoutRight.addWidget(self.buttonClear)
         self.layoutRight.addWidget(self.buttonQuit)
 
+        # Add label above table
+        self.layoutTable = QVBoxLayout()
+        self.label = QLabel("Double click a description or price to edit")
+        self.layoutTable.addWidget(self.label)
+        self.layoutTable.addWidget(self.table)
+
+
         #create layout object for with 50% of screen used
-        self.layout = QHBoxLayout()    
-        self.layout.addWidget(self.table, 50)
+        self.layout = QHBoxLayout()
+        self.layout.addLayout(self.layoutTable, 50)
         self.layout.addLayout(self.layoutRight, 50)
 
 #creates layout object for buttons to sit in, connects buttons to functions

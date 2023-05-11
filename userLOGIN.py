@@ -1,6 +1,6 @@
 import hashlib #importing hashing
 from PyQt5 import QtWidgets
-from Newestlogin import Ui_MainWindow as uimw
+
 
 #user class to define username and pw
 class User():
@@ -48,11 +48,8 @@ def userLogin(userName, userPassword): #, dataform, uimw
         print('Before showing main') #testing purpose
         
         return login_successful
-              
 
-        print('main shown') #testin purpose                
-        #uimw.mainWindow.close() #not working!!!!!!!
-        print('login window closed')#testing purpose       
+           
         
 
     else:

@@ -2,7 +2,7 @@
 code set to .setStyleSheet is CSS code for display"""
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
-from Main import DataEntryForm, MainWindow
+from main import DataEntryForm, MainWindow
 from userLOGIN import *
 
 # creates Main window to pass container object into
