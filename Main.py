@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import (QApplication, QWidget, QMainWindow, QPushButton, QA
 from PyQt5.QtGui import QPainter, QStandardItemModel, QIcon
 from PyQt5.Qt import Qt                                            
 from PyQt5.QtChart import QChart, QChartView, QPieSeries
-#from cryptography.fernet import Fernet         
+     
 
 
 class DataEntryForm(QWidget):            #adding views to the main window object
@@ -16,7 +16,7 @@ class DataEntryForm(QWidget):            #adding views to the main window object
         self.items = 0
 
         #dummy data set for examples, dictionary
-        self._data = {"Double click a description or price to edit": 0.0, "Gas": 30.0, "rent": 1850.0, "Car Payment": 420.0, 
+        self._data = {"Gas": 30.0, "rent": 1850.0, "Car Payment": 420.0, 
                       "Entertainment": 105.0, "Public Transport": 60.0, "Coffee":90.5}
 
         #left side of the app screen setup, 2 columns, header names Description and Price
@@ -24,9 +24,20 @@ class DataEntryForm(QWidget):            #adding views to the main window object
         self.table.setColumnCount(2)
         self.table.setHorizontalHeaderLabels(("Description", "Price"))
         self.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch) #auto exapnd column width
+        
+        # Add label above table
+        self.layoutTable = QVBoxLayout()
+        self.label = QLabel("Double click a description or price to edit")
+        self.layoutTable.addWidget(self.label)
+        self.layoutTable.addWidget(self.table)
+
+        #create layout object for with 50% of screen used
+        self.layout = QHBoxLayout()
+        self.layout.addLayout(self.layoutTable, 50)
 
         #create layout object
         self.layoutRight = QVBoxLayout()
+       
 
         # set chart widget using a render method in Qpainter for better resolution
         self.chartView = QChartView()                         
@@ -56,12 +67,20 @@ class DataEntryForm(QWidget):            #adding views to the main window object
         self.layoutRight.addWidget(self.buttonClear)
         self.layoutRight.addWidget(self.buttonQuit)
 
+        # Add label above table
+        self.layoutTable = QVBoxLayout()
+        self.label = QLabel("Double click a description or price to edit")
+        self.layoutTable.addWidget(self.label)
+        self.layoutTable.addWidget(self.table)
+
+
         #create layout object for with 50% of screen used
-        self.layout = QHBoxLayout()    
-        self.layout.addWidget(self.table, 50)
+        self.layout = QHBoxLayout()
+        self.layout.addLayout(self.layoutTable, 50)
         self.layout.addLayout(self.layoutRight, 50)
 
 #creates layout object for buttons to sit in, connects buttons to functions
+        app = QApplication(sys.argv)
         self.setLayout(self.layout)
         self.buttonQuit.clicked.connect(lambda:app.quit())
         self.buttonClear.clicked.connect(self.reset_table)
@@ -149,6 +168,7 @@ class MainWindow(QMainWindow):                                                  
     def __init__(self, w):
         super().__init__()
         self.DataEntryForm = w   #--------
+        app = QApplication(sys.argv)  #------test
         print('Initializing mainwindow')                                                                             #inheirt 
         self.setWindowTitle('Expense Data Entry Form')                                                 #window title
         #self.setWindowIcon(QIcon(r'C:\Users\peglo\OneDrive\SDEV220\Project stuff\financial_icon.png')) #set file path for icon png file, needs to adjust once file uplaod
@@ -176,36 +196,6 @@ class MainWindow(QMainWindow):                                                  
 
 
 
-#---------------------------------------------New process to encrypt CSV file----- NOT FINISHED----
-    # def encryptCSV():
-    #     #key generation
-    #     key = Fernet.generate_key()
-
-    #     # string the key in a file
-    #     with open('filekey.key','wb') as filekey:
-    #         filekey.write(key)
-
-    #     #opening the key
-    #     with open('filekey.key', 'rb') as filekey:
-    #         key = filekey.read()
-        
-    #     with open ('Expense Report.csv', 'rb') as file:
-    #         original = file.read()
-
-    #     encrypted = Fernet.encrypt(original)
-
-    #     with open ('Expense Report.csv', 'wb') as encrypted_file:
-    #         encrypted_file.write(encrypted)
-
-    
-
-#---------------------------------------------New process to encrypt CSV file----- NOT FINISHED----
-
-
-
-
-
-
 #self.DataEntryForm ------ w
     #function to export CSV file, using csv module, file saved as Expense Report.csv, file opened and closed.
     def export_to_csv(self):
@@ -213,7 +203,7 @@ class MainWindow(QMainWindow):                                                  
             with open('Expense Report.csv','w', newline='' ) as file:
                 writer = csv.writer(file)
                 writer.writerow((self.DataEntryForm.table.horizontalHeaderItem(0).text(), self.DataEntryForm.table.horizontalHeaderItem(1).text()))
-                for rowNumber in range(w.table.rowCount()):
+                for rowNumber in range(self.DataEntryForm.table.rowCount()):
                     writer.writerow([self.DataEntryForm.table.item(rowNumber, 0).text(), self.DataEntryForm.table.item(rowNumber, 1).text()])
 
                 print('CSV file exported')
