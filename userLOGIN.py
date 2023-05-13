@@ -45,15 +45,11 @@ def userLogin(userName, userPassword): #, dataform, uimw
     if login_successful:
         print('login successful')
         #QtWidgets.QMessageBox.information(None, 'Welcome', 'Login Successful!')
-        print('Before showing main') #testing purpose
-        
-        return login_successful
-
-           
+                
+        return login_successful           
         
 
-    else:
-        print('not successful') #testing purpose
+    else:        
         QtWidgets.QMessageBox.warning(None, 'Error', 'Invalid Login')
                     ###RUN MAIN--------------------------------------------------------------------------------------RUN MAIN
             

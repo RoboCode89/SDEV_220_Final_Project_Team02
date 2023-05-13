@@ -218,15 +218,20 @@ class Ui_MainWindow(object):
 #----------------------------------------------------------------------------------------------Buttons connected to functions
         self.Login_Button.clicked.connect(self.getUserInfo)
         self.CreateNewAccButton.clicked.connect(self.getNewUserInfo)
- 
+    #getting info entered by user
     def getUserInfo(self):
         userName = self.GuiUserName.text()
         userPassword = self.GuiUserPassword.text()
         print(userName,userPassword)                       
-        
-        if userLogin(userName, userPassword):
-            mainWindow.show()
-            w.hide()
+        #checking if user input is valid
+        if userLogin(userName, userPassword):            
+            try:
+                mainWindow.DataEntryForm.load_data()#calling load_data method on the entry form to load CSV file
+                
+            except Exception as e:
+                pass
+            mainWindow.show()            
+            w.hide()        
         
 
 

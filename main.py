@@ -1,6 +1,6 @@
 import sys
 import csv
-from PyQt5.QtWidgets import (QApplication, QWidget, QMainWindow, QPushButton, QAction, QHeaderView, QLineEdit, QLabel, QTableWidget, QTableWidgetItem, QVBoxLayout, QHBoxLayout)
+from PyQt5.QtWidgets import (QApplication, QWidget, QMainWindow, QPushButton, QAction, QHeaderView, QLineEdit, QLabel, QTableWidget, QTableWidgetItem, QVBoxLayout, QHBoxLayout,QFileDialog)
 from PyQt5.QtGui import QPainter, QStandardItemModel, QIcon
 from PyQt5.Qt import Qt                                            
 from PyQt5.QtChart import QChart, QChartView, QPieSeries
@@ -15,8 +15,8 @@ class DataEntryForm(QWidget):            #adding views to the main window object
         self.items = 0
 
         #dummy data set for examples, dictionary
-        self._data = {"Gas": 30.0, "rent": 1850.0, "Car Payment": 420.0, 
-                      "Entertainment": 105.0, "Public Transport": 60.0, "Coffee":90.5}
+        self._data = {}#{"Gas": 30.0, "rent": 1850.0, "Car Payment": 420.0, 
+                      #"Entertainment": 105.0, "Public Transport": 60.0, "Coffee":90.5}
 
         #left side of the app screen setup, 2 columns, header names Description and Price
         self.table = QTableWidget()
@@ -84,14 +84,12 @@ class DataEntryForm(QWidget):            #adding views to the main window object
         self.buttonQuit.clicked.connect(lambda:app.quit())
         self.buttonClear.clicked.connect(self.reset_table)
         self.buttonPlot.clicked.connect(self.graph_chart)          
-        self.buttonAdd.clicked.connect(self.add_entry)
+        self.buttonAdd.clicked.connect(lambda: self.add_entry())
 
 #connects input fields, specifices string and adds functions
         self.LineEditDescription.textChanged[str].connect(self.check_disable)
         self.lineEditPrice.textChanged[str].connect(self.check_disable)
-
-        #popluat fill records in table widget
-        self.fill_table()
+        
 
     #populate the dummy data if there is no data present to display, 
     def fill_table(self, data=None):
@@ -110,9 +108,13 @@ class DataEntryForm(QWidget):            #adding views to the main window object
             self.items += 1
 
 #Gets description and price from user input feild, adds to the table then clears the line, ValueError checked for input verification price must be int/float
-    def add_entry(self):
-        desc = self.LineEditDescription.text()
-        price = self.lineEditPrice.text()
+    def add_entry(self, desc=None, price=None):
+        print('add_entry called')
+        print(f"desc: {desc}")
+        print(f"price: {price}")
+        if desc is None and price is None:
+            desc = self.LineEditDescription.text()
+            price = self.lineEditPrice.text()
 
         try: 
             descItem = QTableWidgetItem(desc)
@@ -123,7 +125,7 @@ class DataEntryForm(QWidget):            #adding views to the main window object
             self.table.setItem(self.items, 0, descItem)
             self.table.setItem(self.items, 1, priceItem)
             self.items += 1
-        except ValueError:
+        except ValueError:            
             pass
 
 #empty strings to clear the input after adding
@@ -158,8 +160,36 @@ class DataEntryForm(QWidget):            #adding views to the main window object
         chart.addSeries(series)
         chart.legend().setAlignment(Qt.AlignTop)
         self.chartView.setChart(chart)
-
-
+    
+    #function for saving file
+    def save_data(self):
+        #get file name and filter it for CSV
+        fileName, _ = QFileDialog.getSaveFileName(
+            self, "Save Data", "", "CSV Files (*.csv)"
+        )
+        if fileName:
+            with open(fileName, "w") as file: #open file in write mode
+                writer = csv.writer(file)
+                #writing the data rows
+                for row in range(self.table.rowCount()):
+                    desc = self.table.item(row, 0).text()
+                    price = self.table.item(row, 1).text()
+                    writer.writerow([desc, price])
+    #function for loading file
+    def load_data(self):
+        #getting file name and filtering for csv files
+        fileName, _ = QFileDialog.getOpenFileName(
+            self, "Load Data", "", "CSV Files (*.csv)"
+        )
+        if fileName:
+            #opening file in read
+            with open(fileName, "r") as file:
+                reader = csv.reader(file)
+                next(reader) #skipping over header rows in table
+                for row in reader:
+                    desc, price = row
+                    self.add_entry(desc, float(price.replace("$", "")))#add new entry while removing $ before converting to float
+       
 
 
 
@@ -168,7 +198,7 @@ class MainWindow(QMainWindow):                                                  
         super().__init__()
         self.DataEntryForm = w   #--------
         app = QApplication(sys.argv)  #------test
-        print('Initializing mainwindow')                                                                             #inheirt 
+        #print('Initializing mainwindow')  testing purpose                                                                           #inheirt 
         self.setWindowTitle('Expense Data Entry Form')                                                 #window title
         self.resize(1200,600)                                                                          #size of window
 
@@ -195,25 +225,41 @@ class MainWindow(QMainWindow):                                                  
 
 
 #self.DataEntryForm ------ w
-    #function to export CSV file, using csv module, file saved as Expense Report.csv, file opened and closed.
+    #function for csv files
     def export_to_csv(self):
-        try:
-            with open('Expense Report.csv','w', newline='' ) as file:
-                writer = csv.writer(file)
-                writer.writerow((self.DataEntryForm.table.horizontalHeaderItem(0).text(), self.DataEntryForm.table.horizontalHeaderItem(1).text()))
-                for rowNumber in range(self.DataEntryForm.table.rowCount()):
-                    writer.writerow([self.DataEntryForm.table.item(rowNumber, 0).text(), self.DataEntryForm.table.item(rowNumber, 1).text()])
-
-                print('CSV file exported')
-                file.close()
-        except Exception as e:
-            print(e)
+        #get file name and filter it for csv files
+        fileName,_ = QFileDialog.getSaveFileName(self, "Export to CSV", "", "CSV Files (*.csv)")
+        if fileName:
+            try:
+                with open(fileName, "w", newline="") as file: #opeing file in write mode
+                    writer = csv.writer(file)
+                    #writing header row
+                    writer.writerow(
+                        (
+                            self.DataEntryForm.table.horizontalHeaderItem(0).text(),
+                            self.DataEntryForm.table.horizontalHeaderItem(1).text(),
+                        )
+                    )
+                    #writing data rows
+                    for rowNumber in range(self.DataEntryForm.table.rowCount()):
+                        writer.writerow(
+                            [
+                                self.DataEntryForm.table.item(rowNumber, 0).text(),
+                                self.DataEntryForm.table.item(rowNumber, 1).text(),
+                            ]
+                        )
+                
+            except Exception as e:
+                print(e)
+        
     
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     w = DataEntryForm()
+    w.load_data()
+    app.aboutToQuit.connect(w.save_data)
     main = MainWindow(w)
     main.show()
 
