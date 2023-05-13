@@ -1,10 +1,12 @@
+#import of all needed libraries and widgets
 import sys
 import csv
-from PyQt5.QtWidgets import (QApplication, QWidget, QMainWindow, QPushButton, QAction, QHeaderView, QLineEdit, QLabel, QTableWidget, QTableWidgetItem, QVBoxLayout, QHBoxLayout,QFileDialog)
-from PyQt5.QtGui import QPainter, QStandardItemModel, QIcon
+from PyQt5.QtWidgets import (QApplication, QWidget, QMainWindow, QPushButton, QAction, QHeaderView, QLineEdit, QLabel, QTableWidget, QTableWidgetItem, QVBoxLayout, QHBoxLayout,QFileDialog,)
+from PyQt5.QtGui import QPainter, QStandardItemModel
 from PyQt5.Qt import Qt                                            
 from PyQt5.QtChart import QChart, QChartView, QPieSeries
-     
+from PyQt5 import QtWidgets
+
 
 
 class DataEntryForm(QWidget):            #adding views to the main window object
@@ -14,10 +16,7 @@ class DataEntryForm(QWidget):            #adding views to the main window object
         #checks how many items are in the table
         self.items = 0
 
-        #dummy data set for examples, dictionary
-        self._data = {}#{"Gas": 30.0, "rent": 1850.0, "Car Payment": 420.0, 
-                      #"Entertainment": 105.0, "Public Transport": 60.0, "Coffee":90.5}
-
+       
         #left side of the app screen setup, 2 columns, header names Description and Price
         self.table = QTableWidget()
         self.table.setColumnCount(2)
@@ -175,8 +174,11 @@ class DataEntryForm(QWidget):            #adding views to the main window object
                     desc = self.table.item(row, 0).text()
                     price = self.table.item(row, 1).text()
                     writer.writerow([desc, price])
-    #function for loading file
+   
+   
+    #function for loading file from saved location or create new
     def load_data(self):
+        QtWidgets.QMessageBox.information(None, "Choose a CSV file", 'Load A CSV file from saved, Or choose Cancel To Create New')
         #getting file name and filtering for csv files
         fileName, _ = QFileDialog.getOpenFileName(
             self, "Load Data", "", "CSV Files (*.csv)"
@@ -223,8 +225,6 @@ class MainWindow(QMainWindow):                                                  
         self.setCentralWidget(w) 
 
 
-
-#self.DataEntryForm ------ w
     #function for csv files
     def export_to_csv(self):
         #get file name and filter it for csv files
@@ -254,7 +254,7 @@ class MainWindow(QMainWindow):                                                  
         
     
 
-
+# initializing Pythons interpreter to read source files and define few special variables/global variables
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     w = DataEntryForm()

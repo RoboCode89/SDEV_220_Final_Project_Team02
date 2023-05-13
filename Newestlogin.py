@@ -1,9 +1,9 @@
 """Gui FOr Login
 code set to .setStyleSheet is CSS code for display"""
-from PyQt5 import QtCore, QtGui, QtWidgets
-import sys
-from main import DataEntryForm, MainWindow
-from userLOGIN import *
+from PyQt5 import QtCore, QtGui, QtWidgets           #imports for pyqt5 library itmes
+import sys                                           #import system
+from main import DataEntryForm, MainWindow           # importing scripts and their windows
+from userLOGIN import *                              # importing scripts and their windows
 
 # creates Main window to pass container object into
 class Ui_MainWindow(object):
@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
         MainWindow.resize(424, 525)
         MainWindow.setStyleSheet("border-radius{15px}")
         
-        #Could break without, not to sure if its needed...
+        #Creates the central widget object
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setStyleSheet("")
         self.centralwidget.setObjectName("centralwidget")
@@ -43,7 +43,9 @@ class Ui_MainWindow(object):
 
         # displays the "Login" text
         self.LoginLabel = QtWidgets.QLabel(self.containerThing)
-        self.LoginLabel.setGeometry(QtCore.QRect(160, 40, 111, 40))
+        self.LoginLabel.setGeometry(QtCore.QRect(160, 40, 111, 40)) #placement
+
+        #Creating font style, color, size, adding CSS stylesheet
         font = QtGui.QFont()
         font.setFamily("Arial Rounded MT Bold")
         font.setPointSize(20)
@@ -53,9 +55,10 @@ class Ui_MainWindow(object):
         self.LoginLabel.setStyleSheet("color:rgba(9,9,9,1);")
         self.LoginLabel.setObjectName("LoginLabel")
 
-        # -------------------------------------------------------------------------------user input for "GuiUserName"... Need to get info for login
+        # -------------------------------------------------------------------------------user input for "GuiUserName"
         self.GuiUserName = QtWidgets.QLineEdit(self.containerThing)
         self.GuiUserName.setGeometry(QtCore.QRect(120, 100, 200, 40))
+        #Creating font style, color, size, adding CSS stylesheet
         font = QtGui.QFont()
         font.setFamily("Arial Rounded MT Bold")
         font.setPointSize(20)
@@ -68,10 +71,11 @@ class Ui_MainWindow(object):
                                         "padding-bottom:7px;")
         self.GuiUserName.setObjectName("GuiUserName")
 
-        #---------------------------------------------------------------------------------user input for "GuiUserPassword ... Need to get info for login
+        #---------------------------------------------------------------------------------user input for "GuiUserPassword 
         self.GuiUserPassword = QtWidgets.QLineEdit(self.containerThing)
         self.GuiUserPassword.setGeometry(QtCore.QRect(120, 160, 200, 40))
         font = QtGui.QFont()
+        #Creating font style, color, size, adding CSS stylesheet
         font.setFamily("Arial Rounded MT Bold")
         font.setPointSize(20)
         font.setBold(False)
@@ -84,10 +88,11 @@ class Ui_MainWindow(object):
         self.GuiUserPassword.setEchoMode(QtWidgets.QLineEdit.Password)
         self.GuiUserPassword.setObjectName("GuiUserPassword")
 
-        #---------------------------------------------------------------------------------login button.. need linked button to function for user authentication
+        #---------------------------------------------------------------------------------login button.. 
         self.Login_Button = QtWidgets.QPushButton(self.containerThing)
         self.Login_Button.setEnabled(True)
         self.Login_Button.setGeometry(QtCore.QRect(120, 230, 200, 40))
+        #Creating font style, color, size, adding CSS stylesheet
         font = QtGui.QFont()
         font.setFamily("Arial Rounded MT Bold")
         font.setPointSize(12)
@@ -119,6 +124,7 @@ class Ui_MainWindow(object):
         self.NewAccountLabel = QtWidgets.QLabel(self.containerThing)
         self.NewAccountLabel.setGeometry(QtCore.QRect(110, 300, 301, 40))
         font = QtGui.QFont()
+        #Creating font style, color, size, adding CSS stylesheet
         font.setFamily("Arial Rounded MT Bold")
         font.setPointSize(18)
         font.setBold(True)
@@ -127,9 +133,10 @@ class Ui_MainWindow(object):
         self.NewAccountLabel.setStyleSheet("color:rgba(9,9,9,1);")
         self.NewAccountLabel.setObjectName("NewAccountLabel")
 
-        #-------------------------------------------------------------------------------------- Feild for "GuiNewUserName"... Need to get info for login Reg new user
+        #-------------------------------------------------------------------------------------- Feild for "GuiNewUserName"
         self.GuiNewUserName = QtWidgets.QLineEdit(self.containerThing)
         self.GuiNewUserName.setGeometry(QtCore.QRect(120, 360, 200, 40))
+        #Creating font style, color, size, adding CSS stylesheet
         font = QtGui.QFont()
         font.setFamily("Arial Rounded MT Bold")
         font.setPointSize(20)
@@ -142,10 +149,11 @@ class Ui_MainWindow(object):
                                                 "padding-bottom:7px;")
         self.GuiNewUserName.setObjectName("GuiNewUserName")
 
-        #------------------------------------------------------------------------------ Feild for "GuiNewUserPassword" ... Need to get info for login Reg new user pword
+        #------------------------------------------------------------------------------ Feild for "GuiNewUserPassword"
         self.GuiNewUserPassword = QtWidgets.QLineEdit(self.containerThing)
         self.GuiNewUserPassword.setGeometry(QtCore.QRect(120, 420, 200, 40))
         font = QtGui.QFont()
+        #Creating font style, color, size, adding CSS stylesheet
         font.setFamily("Arial Rounded MT Bold")
         font.setPointSize(20)
         font.setBold(False)
@@ -158,10 +166,11 @@ class Ui_MainWindow(object):
         self.GuiNewUserPassword.setEchoMode(QtWidgets.QLineEdit.Password)
         self.GuiNewUserPassword.setObjectName("GuiNewUserPassword")
 
-        #---------------------------------------------------------------------------------------------button for creating new user... need function from login 
+        #---------------------------------------------------------------------------------------------button for creating new user
         self.CreateNewAccButton = QtWidgets.QPushButton(self.containerThing)
         self.CreateNewAccButton.setEnabled(True)
         self.CreateNewAccButton.setGeometry(QtCore.QRect(90, 480, 251, 40))
+        #Creating font style, color, size, adding CSS stylesheet
         font = QtGui.QFont()
         font.setFamily("Arial Rounded MT Bold")
         font.setPointSize(12)
@@ -186,7 +195,7 @@ class Ui_MainWindow(object):
                                                 "}")
         self.CreateNewAccButton.setObjectName("CreateNewAccButton")
 
-
+        #Requests that the window be raised to appear above other windows.
         self.label_2.raise_()
         self.LoginLabel.raise_()
         self.GuiUserName.raise_()
@@ -196,8 +205,11 @@ class Ui_MainWindow(object):
         self.GuiNewUserPassword.raise_()
         self.Login_Button.raise_()
         self.CreateNewAccButton.raise_()
+
+        #setting of central widget
         MainWindow.setCentralWidget(self.centralwidget)
 
+        #runs Ui translation to load Ui setup
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -218,6 +230,8 @@ class Ui_MainWindow(object):
 #----------------------------------------------------------------------------------------------Buttons connected to functions
         self.Login_Button.clicked.connect(self.getUserInfo)
         self.CreateNewAccButton.clicked.connect(self.getNewUserInfo)
+    
+    
     #getting info entered by user
     def getUserInfo(self):
         userName = self.GuiUserName.text()
@@ -226,10 +240,11 @@ class Ui_MainWindow(object):
         #checking if user input is valid
         if userLogin(userName, userPassword):            
             try:
-                mainWindow.DataEntryForm.load_data()#calling load_data method on the entry form to load CSV file
+                mainWindow.DataEntryForm.load_data()   #calling load_data method on the entry form to load CSV file
                 
             except Exception as e:
                 pass
+            
             mainWindow.show()            
             w.hide()        
         
@@ -244,7 +259,7 @@ class Ui_MainWindow(object):
 
 
 
-
+# initializing Pythons interpreter to read source files and define few special variables/global variables
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     w = DataEntryForm()
@@ -255,3 +270,6 @@ if __name__ == "__main__":
     ex.setupUi(w)
     w.show()
     sys.exit(app.exec_())
+
+
+

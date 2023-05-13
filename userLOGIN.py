@@ -1,4 +1,5 @@
-import hashlib #importing hashing
+# import of necessary libraries
+import hashlib #importing hashing for encryption/decryption
 from PyQt5 import QtWidgets
 
 
@@ -27,9 +28,8 @@ def Register(NewUserName, NewUserPassword):
     QtWidgets.QMessageBox.information(None, 'Congratulations!', 'Registration Successful')
 
 #function for user login
-def userLogin(userName, userPassword): #, dataform, uimw
-
-    print('in login function')#testing purpose
+def userLogin(userName, userPassword): 
+    print('in login function')#backend testing purpose
     userName = userName
     userPassword = userPassword
     login_successful = False
@@ -51,6 +51,6 @@ def userLogin(userName, userPassword): #, dataform, uimw
 
     else:        
         QtWidgets.QMessageBox.warning(None, 'Error', 'Invalid Login')
-                    ###RUN MAIN--------------------------------------------------------------------------------------RUN MAIN
+                    
             
                
